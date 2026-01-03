@@ -10,7 +10,7 @@ Os projetos estão divididos em dois grandes pilares da análise de risco:
 
 ### 1. Cálculo de Prêmios (Trabalho 2)
 Implementação de diferentes princípios para precificação de seguros, garantindo que o prêmio carregado seja suficiente para cobrir sinistros e incertezas:
-* **Princípio do Valor Esperado:** Adição de um carregamento de segurança ($\theta$) sobre a esperança do sinistro.
+* **Princípio do Valor Esperado:** Adição de um carregamento de segurança $\theta$ sobre a esperança do sinistro.
 * **Princípio da Variância e Desvio Padrão:** Ajuste do prêmio com base na volatilidade dos dados.
 * **Princípio Exponencial:** Utilização de funções de utilidade para precificação sob aversão ao risco.
 
@@ -19,8 +19,8 @@ Implementação de diferentes princípios para precificação de seguros, garant
 ### 2. Teoria do Arruinamento (Trabalho 3)
 Estudo da solvência de uma seguradora ao longo do tempo:
 * **Coeficiente de Ajustamento:** Cálculo do parâmetro fundamental para determinar a estabilidade do fundo de reserva.
-* **Probabilidade de Arruinamento ($\psi(u)$):** Estimativa da probabilidade de as indenizações superarem as reservas iniciais somadas aos prêmios recebidos.
-* **Simulação de Reservas:** Análise do impacto do capital inicial ($u$) na segurança da operação.
+* **Probabilidade de Arruinamento $\psi(u)$ :** Estimativa da probabilidade de as indenizações superarem as reservas iniciais somadas aos prêmios recebidos.
+* **Simulação de Reservas:** Análise do impacto do capital inicial $u$ na segurança da operação.
 
 ---
 
