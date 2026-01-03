@@ -1,0 +1,95 @@
+---
+lang: "pt-br"
+output:
+  pdf_document:
+    extra_dependencies: ["float"]
+    latex_engine: xelatex
+header-includes:
+   - \usepackage{cancel}
+   - \usepackage{fancyhdr}
+   - \pagestyle{fancy}
+   - \fancyhf{}  
+   - \renewcommand{\headrulewidth}{0pt}  
+   - \fancyfoot[L]{\includegraphics[width=2cm]{logo.png}}
+   - \fancyfoot[C]{}
+   - \fancyfoot[R]{Página \thepage}
+title: "Avaliação 3 - Luiz Henrique Barretta Francisco - GRR20213026"
+---
+
+Considere que se deseja estabelecer a tarifa de um plano de seguros que cobre consultas médicas. O número de consultas médicas de cada segurado por ano segue uma distribuição de Poisson com parâmetro 3 e o custo de cada consulta é igual a R$ 100,00. O plano de seguro está sendo prospectado para uma carteira com 10.000 segurados. No estabelecimento do prêmio tem-se como condição uma probabilidade de ruína igual a 0,025 e os carregamentos comerciais dados por: Despesa administrativa – 10%, Comissão de corretagem - 20% e Margem de lucro – 10%.Com base nestas informações resolva as questões abaixo:
+
+
+a) Determine o número esperado de consultas por ano na carteira
+
+$$    N * \lambda = 10.000 * 3 = 30.000    $$
+
+b) Qual a probabilidade de um segurado ter nenhuma consulta no período de 1 ano  
+
+```{r, warning=FALSE, echo=TRUE, results=TRUE}
+dpois(x = 0, lambda = 3)
+```
+
+$$ P(Y=0)=0,04978707 	\approx 4,9\% $$
+
+c) Qual o número esperado de segurados com nenhuma consulta no período de 1 ano  
+
+$$   N*P(Y=0) = 10.000*0,0497 = 497   $$
+
+d) Qual o prêmio de risco da carteira?  
+
+$$   P = E(X) = E(cY) = c*N*\lambda=100*10.000*3 = 3.000.000   $$
+
+e) Considerando a probabilidade de ruína adotada qual o prêmio de puro da carteira, dado que não se use capital de garantia?  
+
+$$   \lambda = \frac{\frac{U_0}{c}-Z_\epsilon*\sqrt{N*\theta}}{N*\theta} = \frac{0-(-1,96*\sqrt{30.000})}{30.000}=\frac{1,96*\sqrt{30.000}}{30.000} = 0,01131 $$
+
+$$  PP = (1+\lambda)P=(1+0,01131)*3.000.000 = 3.033.948    $$
+
+f) Determine o prêmio comercial individual mensal 
+
+$$  PC = \frac{PP}{1-(DA+CC+ML)} = \frac{3.033.948}{1-(0,1+0,2+0,1)} = \frac{3.033.948}{0,6} =  5.056.580 $$
+
+$$  PCIM = \frac{PC}{meses*N} = \frac{5.056.580}{12*10.000} \approx  42,14 $$
+
+g) Mantendo a probabilidade de ruína adotada, se for cobrado um prêmio comercial individual mensal igual a R$ 38,00 qual deve ser o capital de garantia a ser adotado? 
+
+$$  PC = PCIM*meses*N = 38,00*12*10.000 = 4.560.000   $$
+$$  PP = PC*(1-(DA+CC+ML)) =  4.560.000*0,6 = 2.736.000  $$
+Para manter a mesma probabilidade de ruína devemos ter um capital total de 3.033.948 conforme calculado em e).
+
+$$  3.033.948 = U_0 + PP =  U_0 + 2.736.000  $$
+$$ U_0 = 297.948 $$
+
+
+h) Se for adotado um capital de garantia igual a R\$ 250.000,00 e se for cobrado um prêmio comercial individual mensal igual a R\$ 38,00 qual será a probabilidade de ruína que a seguradora estará incorrendo? 
+
+
+$$ PP = (1+\lambda)P \Rightarrow 2.736.000 = (1+\lambda)*3.000.000$$
+
+Resolvendo para $\lambda$.
+
+$$ (1+\lambda) = \frac{2.736.000}{3.000.000}  \Rightarrow  \lambda = 0,912 -1 = -0,088$$
+$$    Z_\epsilon =  \frac{\frac{U_0}{c}+\lambda*N\theta}{\sqrt{N\theta}} = \frac{\frac{250.000}{100}-0,088*10.000*3}{\sqrt{10.000*3}} =
+\frac{2.500-2.640}{\sqrt{30.000}} = \frac{2.500-2.640}{173,2} = \frac{-140}{173,2} =  -0,8083141$$
+
+```{r, warning=FALSE, echo=TRUE, results=TRUE}
+pnorm(-0.8083141, lower.tail = FALSE)
+```
+
+$$ P(Z>-0,808) = 0.7905 = 79,05\% $$
+
+
+i) Se for adotado um capital de garantia igual a R\$ 250.000,00 e se for cobrado um prêmio comercial individual mensal igual a R\$ 38,00 qual deverá ser a comissão de corretagem a ser adotada se for desejada a probabilidade de ruína de 0,025? 
+
+$$   PP = (1+\lambda)P = (1+0,025)*3.000.000 = 3.075.000 $$
+$$  PP = PC*(1-(DA+CC+ML)) =  4.560.000*(1-(CC+0,2)) = 4.560.000*(0,8-CC)   $$
+$$  3.075.000 = 4.560.000*(0,8-CC) \Rightarrow  \frac{3.075.000}{4.560.000} = 0,8-CC  $$
+
+Resolvendo para CC:
+
+$$   CC = -0,6743421+0,8 = 0,1256  = 12,56\%$$
+
+
+
+
+
